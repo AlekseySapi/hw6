@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Random;
+
 class Person {
     public String name;
     public int id;
@@ -212,6 +215,8 @@ class Tree {
 
 public class Main {
 
+    public static long startTime, endTime;
+
     public static void main(String[] args) {
 
 //        Задание 6.1
@@ -229,26 +234,78 @@ public class Main {
         myTree.insert(new Person(1, "Ivan", 21));
         myTree.insert(new Person(3, "Sophie", 19));
 
+        startTime = System.nanoTime();
         myTree.max().display();
-        myTree.min().display();
+        endTime = System.nanoTime();
+        System.out.println("Поиск max-элемента занял: " + (endTime - startTime) + " нс");
 
         System.out.println();
 
+        startTime = System.nanoTime();
+        myTree.min().display();
+        endTime = System.nanoTime();
+        System.out.println("Поиск min-элемента занял: " + (endTime - startTime) + " нс");
+
+        System.out.println();
+
+        startTime = System.nanoTime();
         myTree.find(3).display();
+        endTime = System.nanoTime();
+        System.out.println("Поиск элемента по ключу занял: " + (endTime - startTime) + " нс");
 
         System.out.println();
 
 
 //        Задание 6.5
 
-        long startTime = System.nanoTime();
+        startTime = System.nanoTime();
         myTree.delete(5);
-        long endTime = System.nanoTime();
+        endTime = System.nanoTime();
         System.out.println("Удаление заняло: " + (endTime - startTime) + " нс");
 
         System.out.println();
 
+        startTime = System.nanoTime();
         myTree.displayTree();
+        endTime = System.nanoTime();
+
+        System.out.println();
+        System.out.println("Вывод дерева занял: " + (endTime - startTime) + " нс");
+
+        System.out.println();
+
+
+//        Задание 6.6
+
+        int[] arr;
+        Random rand = new Random();
+        arr = new int[10];
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = rand.nextInt(10);
+        }
+
+        int[] copyArr = Arrays.copyOf(arr, arr.length);
+
+
+        System.out.println(Arrays.toString(arr));
+
+        HeapSort arrSort = new HeapSort();
+
+        startTime = System.nanoTime();
+        arrSort.sort(arr);
+        endTime = System.nanoTime();
+        System.out.println("Пирамидальная сортировка заняла: " + (endTime - startTime) + " нс");
+
+        startTime = System.nanoTime();
+        Arrays.sort(copyArr);
+        endTime = System.nanoTime();
+        System.out.println("Сортировка методом sort заняла: " + (endTime - startTime) + " нс");
+
+
+
+
+
 
 
     }
