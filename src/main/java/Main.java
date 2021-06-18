@@ -72,6 +72,39 @@ class Tree {
     }
 
 
+    //        Задание 6.4
+
+    private void inOrder(Node rootNode) {
+        if (rootNode != null) {
+            inOrder(rootNode.leftChild);
+            rootNode.display();
+            inOrder(rootNode.rightChild);
+        }
+    }
+
+    public Node min() {
+        Node current, last = null;
+        current = root;
+        while (current != null) {
+            last = current;
+            current = current.leftChild;
+        }
+
+        return last;
+    }
+
+    public Node max() {
+        Node current, last = null;
+        current = root;
+        while (current != null) {
+            last = current;
+            current = current.rightChild;
+        }
+
+        return last;
+    }
+
+
 }
 
 public class Main {
@@ -83,6 +116,24 @@ public class Main {
         Пример использования древовидной структуры:
         Быстрая вставка, поиск и удаление элемента
  */
+
+//        Реализация:
+
+        Tree myTree = new Tree();
+
+        myTree.insert(new Person(7, "Viktor", 24));
+        myTree.insert(new Person(5, "Peter", 53));
+        myTree.insert(new Person(1, "Ivan", 21));
+        myTree.insert(new Person(3, "Sophie", 19));
+
+        myTree.max().display();
+        myTree.min().display();
+
+        System.out.println();
+
+        myTree.find(3).display();
+
+        System.out.println();
 
 
     }
